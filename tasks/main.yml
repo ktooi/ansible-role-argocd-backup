@@ -1,0 +1,18 @@
+- name: Copy the backup script
+  copy:
+    src: backup_argocd.sh
+    dest: "{{ argocd_backup_script_file }}"
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+
+- name: Create cron file
+  template:
+    src: argocd-backup.j2
+    dest: "{{ argocd_backup_cron_file }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
