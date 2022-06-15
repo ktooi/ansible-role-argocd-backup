@@ -29,7 +29,7 @@ function main() {
 	[ -f "${ARGOCD_BKUP_HASH_FILE}" ] && __bkup_hash="$(cat "${ARGOCD_BKUP_HASH_FILE}")"
 	if [ "${__bkup_hash}" != "${__latest_hash}" ]; then
 		mv "${ARGOCD_LATEST_FILE}" "${ARGOCD_BKUP_FILE}"
-		gzip -n "${ARGOCD_LATEST_FILE}"
+		gzip -n "${ARGOCD_BKUP_FILE}"
 		echo -n "${__latest_hash}" > "${ARGOCD_BKUP_HASH_FILE}"
 	fi
 	update_watchdog
