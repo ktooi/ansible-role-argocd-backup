@@ -1,4 +1,9 @@
+---
+argocd_backup_cmd: argocd
+argocd_backup_ns: argocd
+argocd_backup_dst_dir: "/var/argocd/backup"
 argocd_backup_schedule: "0 * * * *"
 argocd_backup_user: root
 argocd_backup_script_file: "/usr/local/bin/backup_argocd.sh"
 argocd_backup_cron_file: "/etc/cron.d/argocd-backup"
+# argocd_backup_kubeconfig_file:

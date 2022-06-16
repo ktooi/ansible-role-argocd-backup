@@ -1,0 +1,20 @@
+{% if argocd_backup_cmd is defined %}
+ARGOCD_CMD={{ argocd_backup_cmd }}
+{% else %}
+#ARGOCD_CMD=
+{% endif %}
+{% if argocd_backup_ns is defined %}
+ARGOCD_NS={{ argocd_backup_ns }}
+{% else %}
+#ARGOCD_NS=
+{% endif %}
+{% if argocd_backup_dst_dir is defined %}
+ARGOCD_BKUP_DIR={{ argocd_backup_dst_dir }}
+{% else %}
+#ARGOCD_KUBECONFIG_FILE=
+{% endif %}
+{% if argocd_backup_kubeconfig_file is defined %}
+ARGOCD_KUBECONFIG_FILE={{ argocd_backup_kubeconfig_file }}
+{% else %}
+#ARGOCD_KUBECONFIG_FILE=
+{% endif %}
