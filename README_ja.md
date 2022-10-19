@@ -2,7 +2,7 @@
 
 # Ansible Role: argocd-backup
 
-定期的に ArgoCD の設定のバックアップを取得します。
+ArgoCD の設定をバックアップするシェルスクリプトを配置し、 cron で定期的に実行させるための role です。
 
 この role では次のことを行います。
 
