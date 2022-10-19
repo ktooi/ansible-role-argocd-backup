@@ -1,4 +1,5 @@
 ---
+# Initialize variables tasks
 - name: Get user home directory
   shell: >
     getent passwd {{ argocd_backup_user }} | awk -F: '{ print $6 }'
@@ -14,6 +15,7 @@
   when: argocd_backup_kubeconfig_file is not defined
 
 
+# Precheck tasks
 - name: Ensure argocd command is exists and executable
   command:
     argv:
@@ -53,6 +55,7 @@
     or not result_kubeconfig_stat.stat.readable
 
 
+# Setup tasks
 - name: Create cron file
   template:
     src: argocd_backup.j2
