@@ -13,6 +13,46 @@
     argocd_backup_kubeconfig_file: "{{ user_homedir.stdout }}/.kube/config"
   when: argocd_backup_kubeconfig_file is not defined
 
+
+- name: Ensure argocd command is exists and executable
+  command:
+    argv:
+      - "{{ argocd_backup_cmd }}"
+      - help
+  register: result_argocd_help
+  changed_when: false
+  check_mode: false
+  ignore_errors: true
+  become: true
+  become_user: "{{ argocd_backup_user if argocd_backup_become_user_precheck else omit }}"
+
+- fail:
+    msg: >-
+      Execution of the argocd command failed;
+      please verify that the **{{ argocd_backup_cmd }}** command exists and is executable.
+      If it exists in a different path, set the **argocd_backup_cmd** variable.
+  when: result_argocd_help.failed
+
+- name: Ensure .kube/config is exists and readable
+  stat:
+    path: "{{ argocd_backup_kubeconfig_file }}"
+    follow: true
+  register: result_kubeconfig_stat
+  ignore_errors: true
+  become: true
+  become_user: "{{ argocd_backup_user if argocd_backup_become_user_precheck else omit }}"
+
+- fail:
+    msg: >-
+      Check stat of .kube/config file failed;
+      please verify that the **{{ argocd_backup_kubeconfig_file }}** file exists and is readable.
+      If it exists in a different path, set the **argocd_backup_kubeconfig_file** variable.
+  when: >-
+    result_kubeconfig_stat.failed
+    or not result_kubeconfig_stat.stat.exists
+    or not result_kubeconfig_stat.stat.readable
+
+
 - name: Create cron file
   template:
     src: argocd_backup.j2
