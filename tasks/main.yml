@@ -3,6 +3,7 @@
   shell: >
     getent passwd {{ argocd_backup_user }} | awk -F: '{ print $6 }'
   changed_when: false
+  check_mode: false
   register: user_homedir
   when: argocd_backup_kubeconfig_file is not defined
   become: true
