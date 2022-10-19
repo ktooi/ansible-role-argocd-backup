@@ -1,0 +1,25 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: argocd_backup
+  author: ktooi
+  description: This role deploying a shell script to backup ArgoCD configuration and run it by cron.
+  license: "license (MIT)"
+  min_ansible_version: 2.0
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Archlinux
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - argocd
+    - backup
