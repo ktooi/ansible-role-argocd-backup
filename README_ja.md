@@ -92,9 +92,9 @@ argocd_backup_become_user_precheck: true
 
 この role ではセットアップ前に Precheck を実施しますが、その際に `argocd_backup_user` にて指定されたユーザにてチェックするか否かを指定します。
 
-`true` に設定された場合は `argocd_backup_user` にて指定されたユーザを用いてチェックを行います。これは厳密なチェックになりますが、
-`ansible_user` から `argocd_backup_user` にスイッチできない場合には意図せずにチェックが失敗してしまうかもしれません。
-`false` に設定された場合は `ansible_become_user` などで Ansible に指定されたユーザに権限昇格します。概ね問題なく動作すると思いますが、 `true` を指定した時と比べると厳密さは劣ります。
+* `true` に設定された場合は `argocd_backup_user` にて指定されたユーザを用いてチェックを行います。これは厳密なチェックになりますが、
+  `ansible_user` から `argocd_backup_user` にスイッチできない場合には意図せずにチェックが失敗してしまうかもしれません。
+* `false` に設定された場合は `ansible_become_user` などで Ansible に指定されたユーザに権限昇格します。概ね問題なく動作すると思いますが、 `true` を指定した時と比べると厳密さは劣ります。
 
 ## Dependencies
 
