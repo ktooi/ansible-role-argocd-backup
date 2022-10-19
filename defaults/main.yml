@@ -6,4 +6,5 @@ argocd_backup_schedule: "0 * * * *"
 argocd_backup_user: root
 argocd_backup_script_file: "/usr/local/bin/backup_argocd.sh"
 argocd_backup_cron_file: "/etc/cron.d/argocd-backup"
+argocd_backup_become_user_precheck: true
 # argocd_backup_kubeconfig_file:
